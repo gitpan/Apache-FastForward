@@ -1,0 +1,11 @@
+Changes
+Makefile.PL
+MANIFEST
+README
+t/Apache-FastForward.t
+lib/Apache/FastForward.pm
+lib/Apache/FastForward/Spreadsheet.pm
+examples/Demo.pm
+examples/README
+examples/books.csv
+META.yml                                 Module meta-data (added by MakeMaker)
