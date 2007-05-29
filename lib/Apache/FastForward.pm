@@ -10,7 +10,7 @@ use Encode qw( resolve_alias encode decode);
 use Apache;
 @Apache::FastForward::ISA = qw( Apache );
 
-$VERSION = '1.0'; 
+$VERSION = '1.1'; 
 
 # PUBLIC METHODS (convention: capital first letter)
 
@@ -219,7 +219,7 @@ __END__
 
 =head1 NAME
 
-Apache::FastForward
+Apache::FastForward - new age of spreadsheet web services
 
 =head1 SYNOPSIS
 

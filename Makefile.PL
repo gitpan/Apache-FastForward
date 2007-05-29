@@ -1,8 +1,9 @@
 use 5.008004;
 use ExtUtils::MakeMaker;
+use warnings;
 WriteMakefile(
     NAME              => 'Apache::FastForward',
-    VERSION_FROM      => 'lib/Apache/FastForward.pm', # finds $VERSION
+    VERSION_FROM      => 'lib/Apache/FastForward.pm', 
     PREREQ_PM         => {
 			    Text::CSV_XS => 0,
 			    Encode => 0,

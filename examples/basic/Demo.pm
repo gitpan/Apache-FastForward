@@ -5,6 +5,7 @@ use warnings;
 use Apache::Constants qw( :common );
 use Apache::FastForward;
 use Apache::FastForward::Spreadsheet;
+use Socket;
 
 my %books = (   '111001' =>{ titel => 'Blood Meridian : Or the Evening Redness in the West by Cormac Mccarthy', price => 67 },
 		'111134' =>{ titel => 'As I Lay Dying  by William Faulkner', price => 7 },
@@ -15,17 +16,19 @@ my %books = (   '111001' =>{ titel => 'Blood Meridian : Or the Evening Redness i
 sub handler {
     
     my $r = Apache::FastForward->new( shift );
+
+=pod
+    # For testing the content of the posted body        
+    $r->read( my $rbody, $r->header_in( 'Content-length') );
+    print "$rbody\n";
+    return OK;
+=cut
+
     
     my $user = $r->user();
     defined( $user ) or $user = 'anonymous';
         
     $r->send_http_header( 'text/plain' );
-
-=pod
-    $r->read( my  $rbody, $r->header_in( 'Content-length' ) );
-    print "$rbody\n";
-    return OK;
-=cut
 
     # Template initialisation
     my $sheet = tie my %sheet, 'Apache::FastForward::Spreadsheet';
@@ -35,8 +38,8 @@ sub handler {
         'sep_char'    => ';',
         'binary'      => 1 );
  
-    $sheet->LoadTemplate( '/var/www/books.csv', \%csv_atr);
-
+    $sheet->LoadTemplate( '/var/www/demo/books.csv', \%csv_atr);
+  
     $r->ParseBody();
 
     unless ( $r->IsDefinedTable( 'item', 'quantity' ) ){
